@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{% url 'home' %}">Articles</a>
+</li>
+<li class="breadcrumb-item">Tags</li>
+<li class="breadcrumb-item active">{{ tag.name }}</li>
+{% endblock breadcrumb %} {% block content %} {% for article in articles %}
+<div class="card border-secondary" id="all-articles">
+    <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <p class="card-text">
+            {{ article.content | safe }}
+        </p>
+        <p class="card-text" id="datetimepicker5">
+            <small class="text-muted">{{ article.created_at }}</small>
+        </p>
+    </div>
+    <div class="card-footer">
+        {% for tag in article.get_tags %}
+        <a href="{% url 'tag_articles' tag.id %}"><span
+                class="badge badge-pill badge-secondary">{{ tag.name }}</span></a>
+        {% endfor %}
+    </div>
+</div>
+<br />
+{% endfor %} {% endblock content %}
