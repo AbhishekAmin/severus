@@ -59,6 +59,25 @@ def new_article(request):
     return render(request, 'new_article.html')
 
 
+def edit_draft(request, pk):
+    """
+        Edit a saved draft
+    """
+    draft = Article.objects.get(pk=pk)
+    tags = ""
+    tags_list = draft.get_tags()
+    for tag in tags_list:
+        tags += tag.name + ", "
+
+    context = {
+        'title': draft.title,
+        'content': draft.content,
+        'tags': tags
+    }
+
+    return render(request, 'edit_draft.html', context)
+
+
 def tag_articles(request, pk):
     """
         display all articles of the selected tag

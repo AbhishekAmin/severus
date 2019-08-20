@@ -53,7 +53,9 @@
         {% for draft in drafts %}
         <div class="card" id="{{ draft.id }}">
           <div class="card-body">
-            <h5 class="card-title">{{ draft.title }}</h5>
+            <a href="{% url 'edit_draft' draft.id %}">
+              <h5 class="card-title">{{ draft.title }}</h5>
+            </a>
             <p class="card-text" id="datetimepicker5">
               <small class="text-muted">{{ draft.created_at }}</small>
               <strong>

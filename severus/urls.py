@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^articles/new/$', views.new_article, name='new_article'),
+    url(r'^articles/(?P<pk>\d+)/$', views.edit_draft, name='edit_draft'),
     url(r'^tags/(?P<pk>\d+)/$', views.tag_articles, name='tag_articles'),
     path('admin/', admin.site.urls),
 ]
